@@ -4,7 +4,7 @@ export default function Cards({characters, onClose}) {
 
 
    return (
-   <div style={{display:"flex", justifyContent: "space-between"}} >
+   <div style={{display:"flex", justifyContent: "space-between", backgroundColor: "magenta"}} >
       {
          characters.map((character,index) => (
             <Card 

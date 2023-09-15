@@ -1,7 +1,7 @@
 export default function validation(inputs) {
+    const errors = {};
     const regexEmail = /\S+@\S+\.\S+/;
     const regexPass = new RegExp("[0-9]");
-    const errors = {};
 
     if(!regexEmail.test(inputs.username)) {
         errors.username = "Nombre debe ser un email valido";
@@ -15,8 +15,8 @@ export default function validation(inputs) {
     if(!regexPass.test(inputs.password)) {
         errors.password = "Al menos un numero";
     }
-    if(inputs.password.lenght < 6 || inputs.password.lenght > 10) {
-        errors.password = "Entre 6 y 10 caracteres";
+    if(inputs.password.length < 6 || inputs.password.length > 10) {
+        errors.password = "Contraseña entre 6 y 10 caracteres"
     }
 
     return errors;

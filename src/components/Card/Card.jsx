@@ -1,11 +1,21 @@
-import { useEffect, useState } from "react";
-import { addFav, removeFav } from "../../redux/actions";
-import styles from "./Card.module.css";
 import { Link } from "react-router-dom";
+import styles from "./Card.module.css";
+import { addFav, removeFav } from "../../redux/actions";
+import { connect } from "react-redux";
+import { useEffect, useState } from "react";
+
 
 function Card(props) {
 
    const [isFav, setIsFav] = useState(false);
+
+   useEffect(() => {
+      props.allCharacters.forEach((fav) => {
+         if (fav.id === props.id) {
+            setIsFav(true);
+         }
+      });
+   }, [props.allCharacters]);
 
    const handleFavorite = event => {
       if(isFav) {
@@ -26,14 +36,6 @@ function Card(props) {
                <button onClick={handleFavorite}>🤍</button> )
                }
                
-
-         useEffect (() => {
-            myFavorites.forEach((fav) => {
-               if (fav.id === props.id) {
-                  setIsFav(true);
-                  }
-               });
-            }, [props.myFavorites]);
          
          <div className={styles.buttonContainer} >
          <button 
@@ -56,7 +58,7 @@ function Card(props) {
 
 const mapStateToProps = state => {
    return {
-      myFavorites: state.myFavorites
+      allCharacters: state.allCharacters
    }
 }
 
